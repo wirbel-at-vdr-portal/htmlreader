@@ -2,9 +2,7 @@
 
 #include <sstream> // std::stringstream
 #include <fstream> // std::ifstream
-
-
-namespace HTML {
+#include <iostream>
 
 std::stringstream ReadFileToStream(std::string aFileName) {
   std::stringstream ss;
@@ -16,12 +14,13 @@ std::stringstream ReadFileToStream(std::string aFileName) {
   return ss; 
 }
 
-
 std::string UpperCase(std::string s) {
   std::string r(s);
   std::transform(r.begin(), r.end(), r.begin(), ::tolower);
   return r;
 }
+
+namespace HTML {
 
 
 Document ParseFile(std::string FileName) {
