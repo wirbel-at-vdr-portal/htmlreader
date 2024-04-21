@@ -130,12 +130,12 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a266242e6e98aef8cd00a38bb546813cc" id="r_a266242e6e98aef8cd00a38bb546813cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a266242e6e98aef8cd00a38bb546813cc">parser</a> (unsigned int options=<a class="el" href="#a92e983d77bbfda6dac020ccda8442f3e">parse_default</a>)</td></tr>
 <tr class="separator:a266242e6e98aef8cd00a38bb546813cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f7d988f4a86fed759e01090f8a893c4" id="r_a9f7d988f4a86fed759e01090f8a893c4"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classHTML_1_1document.html">document</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f7d988f4a86fed759e01090f8a893c4">parse</a> (const String &amp;str_html)</td></tr>
-<tr class="separator:a9f7d988f4a86fed759e01090f8a893c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf85aa6f8a8bf4329b24cc6585b399d7" id="r_acf85aa6f8a8bf4329b24cc6585b399d7"><td class="memItemLeft" align="right" valign="top">Document&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf85aa6f8a8bf4329b24cc6585b399d7">parse</a> (const String &amp;str_html)</td></tr>
+<tr class="separator:acf85aa6f8a8bf4329b24cc6585b399d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a255f0f650d120f3513fa7da1df390fed" id="r_a255f0f650d120f3513fa7da1df390fed"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a255f0f650d120f3513fa7da1df390fed">status_description</a> () const</td></tr>
 <tr class="separator:a255f0f650d120f3513fa7da1df390fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aead5cd1e090081f3f5a9d9b3de6bfdbb" id="r_aead5cd1e090081f3f5a9d9b3de6bfdbb"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classHTML_1_1document.html">document</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aead5cd1e090081f3f5a9d9b3de6bfdbb">get_document</a> () const</td></tr>
-<tr class="separator:aead5cd1e090081f3f5a9d9b3de6bfdbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf8fd2e40372669035e15e102a0bc0e5" id="r_acf8fd2e40372669035e15e102a0bc0e5"><td class="memItemLeft" align="right" valign="top">Document&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf8fd2e40372669035e15e102a0bc0e5">get_document</a> () const</td></tr>
+<tr class="separator:acf8fd2e40372669035e15e102a0bc0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -192,16 +192,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>chartype_t is shared between parser and tokenizer. </p>
-<div class="fragment"><div class="line"><span class="lineno">  609</span>                  {</div>
-<div class="line"><span class="lineno">  610</span>     ct_parse_pcdata = 1,     <span class="comment">// Parse until \0, &lt;</span></div>
-<div class="line"><span class="lineno">  611</span>     ct_parse_attr = 2,       <span class="comment">// Parse until \0, \r, \t, \n, &gt;, space</span></div>
-<div class="line"><span class="lineno">  612</span>     ct_parse_attr_ws = 4,    <span class="comment">// Parse until \0, &amp;, \r, &#39;, &quot;, \n, tab</span></div>
-<div class="line"><span class="lineno">  613</span>     ct_space = 8,            <span class="comment">// Parse until \r, \n, space, tab</span></div>
-<div class="line"><span class="lineno">  614</span>     ct_parse_cdata = 16,     <span class="comment">// Parse until \0, ], &gt;, \r</span></div>
-<div class="line"><span class="lineno">  615</span>     ct_parse_comment = 32,   <span class="comment">// Parse until \0, -, &gt;, \r</span></div>
-<div class="line"><span class="lineno">  616</span>     ct_symbol = 64,          <span class="comment">// Any symbol &gt; 127, a-z, A-Z, 0-9, _, :, -, .</span></div>
-<div class="line"><span class="lineno">  617</span>     ct_start_symbol = 128    <span class="comment">// Any symbol &gt; 127, a-z, A-Z, _, :</span></div>
-<div class="line"><span class="lineno">  618</span>     };</div>
+<div class="fragment"><div class="line"><span class="lineno">  612</span>                  {</div>
+<div class="line"><span class="lineno">  613</span>     ct_parse_pcdata = 1,     <span class="comment">// Parse until \0, &lt;</span></div>
+<div class="line"><span class="lineno">  614</span>     ct_parse_attr = 2,       <span class="comment">// Parse until \0, \r, \t, \n, &gt;, space</span></div>
+<div class="line"><span class="lineno">  615</span>     ct_parse_attr_ws = 4,    <span class="comment">// Parse until \0, &amp;, \r, &#39;, &quot;, \n, tab</span></div>
+<div class="line"><span class="lineno">  616</span>     ct_space = 8,            <span class="comment">// Parse until \r, \n, space, tab</span></div>
+<div class="line"><span class="lineno">  617</span>     ct_parse_cdata = 16,     <span class="comment">// Parse until \0, ], &gt;, \r</span></div>
+<div class="line"><span class="lineno">  618</span>     ct_parse_comment = 32,   <span class="comment">// Parse until \0, -, &gt;, \r</span></div>
+<div class="line"><span class="lineno">  619</span>     ct_symbol = 64,          <span class="comment">// Any symbol &gt; 127, a-z, A-Z, 0-9, _, :, -, .</span></div>
+<div class="line"><span class="lineno">  620</span>     ct_start_symbol = 128    <span class="comment">// Any symbol &gt; 127, a-z, A-Z, _, :</span></div>
+<div class="line"><span class="lineno">  621</span>     };</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -217,23 +217,23 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Parsing status, shared betweeen parser and parse_error. </p>
-<div class="fragment"><div class="line"><span class="lineno">  623</span>                    {</div>
-<div class="line"><span class="lineno">  624</span>     status_ok = 0,              <span class="comment">// No error</span></div>
-<div class="line"><span class="lineno">  625</span>     status_file_not_found,      <span class="comment">// File was not found during load_file()</span></div>
-<div class="line"><span class="lineno">  626</span>     status_io_error,            <span class="comment">// Error reading from file/stream</span></div>
-<div class="line"><span class="lineno">  627</span>     status_out_of_memory,       <span class="comment">// Could not allocate memory</span></div>
-<div class="line"><span class="lineno">  628</span>     status_internal_error,      <span class="comment">// Internal error occurred</span></div>
-<div class="line"><span class="lineno">  629</span>     status_unrecognized_tag,    <span class="comment">// Parser could not determine tag type</span></div>
-<div class="line"><span class="lineno">  630</span>     status_bad_pi,              <span class="comment">// Parsing error occurred while parsing document declaration/processing instruction</span></div>
-<div class="line"><span class="lineno">  631</span>     status_bad_comment,         <span class="comment">// Parsing error occurred while parsing comment</span></div>
-<div class="line"><span class="lineno">  632</span>     status_bad_cdata,           <span class="comment">// Parsing error occurred while parsing CDATA section</span></div>
-<div class="line"><span class="lineno">  633</span>     status_bad_doctype,         <span class="comment">// Parsing error occurred while parsing document type declaration</span></div>
-<div class="line"><span class="lineno">  634</span>     status_bad_pcdata,          <span class="comment">// Parsing error occurred while parsing PCDATA section</span></div>
-<div class="line"><span class="lineno">  635</span>     status_bad_start_element,   <span class="comment">// Parsing error occurred while parsing start element tag</span></div>
-<div class="line"><span class="lineno">  636</span>     status_bad_attribute,       <span class="comment">// Parsing error occurred while parsing element attribute</span></div>
-<div class="line"><span class="lineno">  637</span>     status_bad_end_element,     <span class="comment">// Parsing error occurred while parsing end element tag</span></div>
-<div class="line"><span class="lineno">  638</span>     status_end_element_mismatch <span class="comment">// There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag)</span></div>
-<div class="line"><span class="lineno">  639</span>     };</div>
+<div class="fragment"><div class="line"><span class="lineno">  626</span>                    {</div>
+<div class="line"><span class="lineno">  627</span>     status_ok = 0,              <span class="comment">// No error</span></div>
+<div class="line"><span class="lineno">  628</span>     status_file_not_found,      <span class="comment">// File was not found during load_file()</span></div>
+<div class="line"><span class="lineno">  629</span>     status_io_error,            <span class="comment">// Error reading from file/stream</span></div>
+<div class="line"><span class="lineno">  630</span>     status_out_of_memory,       <span class="comment">// Could not allocate memory</span></div>
+<div class="line"><span class="lineno">  631</span>     status_internal_error,      <span class="comment">// Internal error occurred</span></div>
+<div class="line"><span class="lineno">  632</span>     status_unrecognized_tag,    <span class="comment">// Parser could not determine tag type</span></div>
+<div class="line"><span class="lineno">  633</span>     status_bad_pi,              <span class="comment">// Parsing error occurred while parsing document declaration/processing instruction</span></div>
+<div class="line"><span class="lineno">  634</span>     status_bad_comment,         <span class="comment">// Parsing error occurred while parsing comment</span></div>
+<div class="line"><span class="lineno">  635</span>     status_bad_cdata,           <span class="comment">// Parsing error occurred while parsing CDATA section</span></div>
+<div class="line"><span class="lineno">  636</span>     status_bad_doctype,         <span class="comment">// Parsing error occurred while parsing document type declaration</span></div>
+<div class="line"><span class="lineno">  637</span>     status_bad_pcdata,          <span class="comment">// Parsing error occurred while parsing PCDATA section</span></div>
+<div class="line"><span class="lineno">  638</span>     status_bad_start_element,   <span class="comment">// Parsing error occurred while parsing start element tag</span></div>
+<div class="line"><span class="lineno">  639</span>     status_bad_attribute,       <span class="comment">// Parsing error occurred while parsing element attribute</span></div>
+<div class="line"><span class="lineno">  640</span>     status_bad_end_element,     <span class="comment">// Parsing error occurred while parsing end element tag</span></div>
+<div class="line"><span class="lineno">  641</span>     status_end_element_mismatch <span class="comment">// There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag)</span></div>
+<div class="line"><span class="lineno">  642</span>     };</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -257,14 +257,14 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aead5cd1e090081f3f5a9d9b3de6bfdbb" name="aead5cd1e090081f3f5a9d9b3de6bfdbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aead5cd1e090081f3f5a9d9b3de6bfdbb">&#9670;&#160;</a></span>get_document()</h2>
+<a id="acf8fd2e40372669035e15e102a0bc0e5" name="acf8fd2e40372669035e15e102a0bc0e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf8fd2e40372669035e15e102a0bc0e5">&#9670;&#160;</a></span>get_document()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="classHTML_1_1document.html">document</a> &gt; HTML::parser::get_document </td>
+          <td class="memname">Document HTML::parser::get_document </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -275,14 +275,14 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9f7d988f4a86fed759e01090f8a893c4" name="a9f7d988f4a86fed759e01090f8a893c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f7d988f4a86fed759e01090f8a893c4">&#9670;&#160;</a></span>parse()</h2>
+<a id="acf85aa6f8a8bf4329b24cc6585b399d7" name="acf85aa6f8a8bf4329b24cc6585b399d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf85aa6f8a8bf4329b24cc6585b399d7">&#9670;&#160;</a></span>parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="classHTML_1_1document.html">document</a> &gt; HTML::parser::parse </td>
+          <td class="memname">Document HTML::parser::parse </td>
           <td>(</td>
           <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>str_html</em></span></td><td>)</td>
           <td></td>
@@ -430,10 +430,10 @@ Static Public Attributes</h2></td></tr>
 <div class="line">                                          | <a class="code hl_variable" href="#aee58c1f3c3da40f0dbffb5443b37f3f9">parse_escapes</a></div>
 <div class="line">                                          | <a class="code hl_variable" href="#a7fde13c3a8203177840365c2dd3b81aa">parse_wconv_attribute</a></div>
 <div class="line">                                          | <a class="code hl_variable" href="#a0caa4b48b2900b0ebfb3ca063863cb57">parse_eol</a></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_a0caa4b48b2900b0ebfb3ca063863cb57"><div class="ttname"><a href="#a0caa4b48b2900b0ebfb3ca063863cb57">HTML::parser::parse_eol</a></div><div class="ttdeci">static const unsigned int parse_eol</div><div class="ttdef"><b>Definition</b> htmlreader.h:687</div></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_a590ebfe267f831d35f01f26c3f337941"><div class="ttname"><a href="#a590ebfe267f831d35f01f26c3f337941">HTML::parser::parse_cdata</a></div><div class="ttdeci">static const unsigned int parse_cdata</div><div class="ttdef"><b>Definition</b> htmlreader.h:666</div></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_a7fde13c3a8203177840365c2dd3b81aa"><div class="ttname"><a href="#a7fde13c3a8203177840365c2dd3b81aa">HTML::parser::parse_wconv_attribute</a></div><div class="ttdeci">static const unsigned int parse_wconv_attribute</div><div class="ttdef"><b>Definition</b> htmlreader.h:693</div></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_aee58c1f3c3da40f0dbffb5443b37f3f9"><div class="ttname"><a href="#aee58c1f3c3da40f0dbffb5443b37f3f9">HTML::parser::parse_escapes</a></div><div class="ttdeci">static const unsigned int parse_escapes</div><div class="ttdef"><b>Definition</b> htmlreader.h:681</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_a0caa4b48b2900b0ebfb3ca063863cb57"><div class="ttname"><a href="#a0caa4b48b2900b0ebfb3ca063863cb57">HTML::parser::parse_eol</a></div><div class="ttdeci">static const unsigned int parse_eol</div><div class="ttdef"><b>Definition</b> htmlreader.h:690</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_a590ebfe267f831d35f01f26c3f337941"><div class="ttname"><a href="#a590ebfe267f831d35f01f26c3f337941">HTML::parser::parse_cdata</a></div><div class="ttdeci">static const unsigned int parse_cdata</div><div class="ttdef"><b>Definition</b> htmlreader.h:669</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_a7fde13c3a8203177840365c2dd3b81aa"><div class="ttname"><a href="#a7fde13c3a8203177840365c2dd3b81aa">HTML::parser::parse_wconv_attribute</a></div><div class="ttdeci">static const unsigned int parse_wconv_attribute</div><div class="ttdef"><b>Definition</b> htmlreader.h:696</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_aee58c1f3c3da40f0dbffb5443b37f3f9"><div class="ttname"><a href="#aee58c1f3c3da40f0dbffb5443b37f3f9">HTML::parser::parse_escapes</a></div><div class="ttdeci">static const unsigned int parse_escapes</div><div class="ttdef"><b>Definition</b> htmlreader.h:684</div></div>
 </div><!-- fragment --><p>The default parsing mode. Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. </p>
 
 </div>
@@ -531,11 +531,11 @@ Static Public Attributes</h2></td></tr>
 <div class="line">                                       | <a class="code hl_variable" href="#aafb78c862571aac4df23326684e6dcd1">parse_comments</a></div>
 <div class="line">                                       | <a class="code hl_variable" href="#a2d5b4b8bd4c45b42ab8d29ad077b9b9d">parse_declaration</a></div>
 <div class="line">                                       | <a class="code hl_variable" href="#a5491afc0730436b76ccfdf921aeff5bb">parse_doctype</a></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_a146fcdb2cc82c501346e57a14854d3f2"><div class="ttname"><a href="#a146fcdb2cc82c501346e57a14854d3f2">HTML::parser::parse_pi</a></div><div class="ttdeci">static const unsigned int parse_pi</div><div class="ttdef"><b>Definition</b> htmlreader.h:654</div></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_a2d5b4b8bd4c45b42ab8d29ad077b9b9d"><div class="ttname"><a href="#a2d5b4b8bd4c45b42ab8d29ad077b9b9d">HTML::parser::parse_declaration</a></div><div class="ttdeci">static const unsigned int parse_declaration</div><div class="ttdef"><b>Definition</b> htmlreader.h:705</div></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_a5491afc0730436b76ccfdf921aeff5bb"><div class="ttname"><a href="#a5491afc0730436b76ccfdf921aeff5bb">HTML::parser::parse_doctype</a></div><div class="ttdeci">static const unsigned int parse_doctype</div><div class="ttdef"><b>Definition</b> htmlreader.h:711</div></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_a92e983d77bbfda6dac020ccda8442f3e"><div class="ttname"><a href="#a92e983d77bbfda6dac020ccda8442f3e">HTML::parser::parse_default</a></div><div class="ttdeci">static const unsigned int parse_default</div><div class="ttdef"><b>Definition</b> htmlreader.h:720</div></div>
-<div class="ttc" id="aclassHTML_1_1parser_html_aafb78c862571aac4df23326684e6dcd1"><div class="ttname"><a href="#aafb78c862571aac4df23326684e6dcd1">HTML::parser::parse_comments</a></div><div class="ttdeci">static const unsigned int parse_comments</div><div class="ttdef"><b>Definition</b> htmlreader.h:660</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_a146fcdb2cc82c501346e57a14854d3f2"><div class="ttname"><a href="#a146fcdb2cc82c501346e57a14854d3f2">HTML::parser::parse_pi</a></div><div class="ttdeci">static const unsigned int parse_pi</div><div class="ttdef"><b>Definition</b> htmlreader.h:657</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_a2d5b4b8bd4c45b42ab8d29ad077b9b9d"><div class="ttname"><a href="#a2d5b4b8bd4c45b42ab8d29ad077b9b9d">HTML::parser::parse_declaration</a></div><div class="ttdeci">static const unsigned int parse_declaration</div><div class="ttdef"><b>Definition</b> htmlreader.h:708</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_a5491afc0730436b76ccfdf921aeff5bb"><div class="ttname"><a href="#a5491afc0730436b76ccfdf921aeff5bb">HTML::parser::parse_doctype</a></div><div class="ttdeci">static const unsigned int parse_doctype</div><div class="ttdef"><b>Definition</b> htmlreader.h:714</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_a92e983d77bbfda6dac020ccda8442f3e"><div class="ttname"><a href="#a92e983d77bbfda6dac020ccda8442f3e">HTML::parser::parse_default</a></div><div class="ttdeci">static const unsigned int parse_default</div><div class="ttdef"><b>Definition</b> htmlreader.h:723</div></div>
+<div class="ttc" id="aclassHTML_1_1parser_html_aafb78c862571aac4df23326684e6dcd1"><div class="ttname"><a href="#aafb78c862571aac4df23326684e6dcd1">HTML::parser::parse_comments</a></div><div class="ttdeci">static const unsigned int parse_comments</div><div class="ttdef"><b>Definition</b> htmlreader.h:663</div></div>
 </div><!-- fragment --><p>The full parsing mode. Nodes of all types are added to the DOM tree, character/reference entities are expanded, End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. </p>
 
 </div>
