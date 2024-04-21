@@ -31,7 +31,7 @@ URL = https://github.com/wirbel-at-vdr-portal/htmlreader
 # *****************************************************************************/
 Q = @
 
-CXX = $(Q)g++
+CXX ?= g++
 CXXFLAGS += -g -O3 -fPIC -Wall -Wextra -Werror=overloaded-virtual -Wfatal-errors
 CXXFLAGS += -DVERSION=\"$(VERSION)\"
 DEFINES   = -D_POSIX_C_SOURCE
@@ -60,7 +60,7 @@ GN=\e[1;32m
 #/******************************************************************************
 # * programs, override if on different paths.
 # *****************************************************************************/
-AR               = @ar
+AR              ?= ar
 CD              ?= cd
 CP              ?= cp
 CHMOD           ?= chmod
@@ -137,34 +137,34 @@ Cflags: -I$${includedir}
 endef
 
 %.o: %.cpp
-ifeq ($(CXX),@g++)
+ifeq ($(Q),@)
 	@echo -e "${BL} CXX $@${RST}"
 endif
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(DEFINES) $(INCLUDES) -o $@ $<
+	$(Q)$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(DEFINES) $(INCLUDES) -o $@ $<
 
 $(LIBRARY_PATCH): $(OBJS)
-ifeq ($(CXX),@g++)
+ifeq ($(Q),@)
 	@echo -e "${GN} LINK $(LIBRARY_PATCH)${RST}"
 endif
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -Wl,-soname,$(LIBRARY_MAJOR) $(OBJS) $(LIBS) -o $(LIBRARY_PATCH)
+	$(Q)$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -Wl,-soname,$(LIBRARY_MAJOR) $(OBJS) $(LIBS) -o $(LIBRARY_PATCH)
 
 $(LIBRARY_STATIC): $(OBJS)
-ifeq ($(AR),@ar)
+ifeq ($(Q),@)
 	@echo -e "${GN} CREATE $(LIBRARY_STATIC)${RST}"
 endif
-	$(AR) -r -c $(LIBRARY_STATIC) $(OBJS)
+	$(Q)$(AR) -r -c $(LIBRARY_STATIC) $(OBJS)
 ifeq ($(RANLIB),@ranlib)
 	@echo -e "${GN} RANLIB $(LIBRARY_STATIC)${RST}"
 endif
-	$(RANLIB) $(LIBRARY_STATIC)
+	$(Q)$(RANLIB) $(LIBRARY_STATIC)
 
 dll: $(DLL)
 
 $(DLL): $(OBJS)
-ifeq ($(CXX),@g++)
+ifeq ($(Q),@)
 	@echo -e "${GN} LINK $(DLL)${RST}"
 endif
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) -Wl,--subsystem,windows,--out-implib,$(DLL).a $(OBJS) $(LIBS) -o $(DLL) 
+	$(Q)$(CXX) $(CXXFLAGS) $(LDFLAGS) -Wl,--subsystem,windows,--out-implib,$(DLL).a $(OBJS) $(LIBS) -o $(DLL) 
 
 .PHONY: clean Version.h doc
 clean:
@@ -182,7 +182,7 @@ install: $(LIBRARY_PATCH)
 	$(LN_SFR) $(DESTDIR)$(libdir)/$(LIBRARY_PATCH) $(DESTDIR)$(libdir)/$(LIBRARY_MINOR)
 	$(LN_SFR) $(DESTDIR)$(libdir)/$(LIBRARY_MINOR) $(DESTDIR)$(libdir)/$(LIBRARY_MAJOR)
 	$(LN_SFR) $(DESTDIR)$(libdir)/$(LIBRARY_MAJOR) $(DESTDIR)$(libdir)/$(LIBRARY)
-	$(INSTALL_DATA) LICENSE README.md $(DESTDIR)$(docdir)
+	$(INSTALL_DATA) LICENSE README.md doc/LICENSE.povilasb.cpp-html doc/README.rst.povilasb.cpp-html $(DESTDIR)$(docdir)
 	$(INSTALL_DATA) htmlreader.pc $(DESTDIR)$(pkgconfigdir)
 #	$(INSTALL_DATA) doc/htmlreader.1 $(DESTDIR)$(man1dir)
 
@@ -195,6 +195,8 @@ uninstall:
 	$(RM) -f $(DESTDIR)$(includedir)/htmlreader.h
 	$(RM) -f $(DESTDIR)$(docdir)/LICENSE
 	$(RM) -f $(DESTDIR)$(docdir)/README.md
+	$(RM) -f $(DESTDIR)$(docdir)/LICENSE.povilasb.cpp-html
+	$(RM) -f $(DESTDIR)$(docdir)/README.rst.povilasb.cpp-html
 	$(RM) -r $(DESTDIR)$(docdir)
 	$(RM) -f $(DESTDIR)$(pkgconfigdir)/htmlreader.pc
 #	$(RM) -f $(DESTDIR)$(man1dir)/htmlreader.1

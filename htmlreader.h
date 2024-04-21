@@ -826,6 +826,57 @@ private:
 
 
 /*******************************************************************************
+ * Simple helper functions.
+ * Those are not needed to use this lib, but helpful.
+ ******************************************************************************/
+
+/**
+ * Parses a html file and returns a Document shared pointer.
+ * \note
+ * Element and attribute names are always capitalized.
+ */
+Document ParseFile(std::string FileName);
+
+/**
+ * Searches a document for it's body node and returns it.
+ * returns a pointer to the body node or a nullptr.
+ */
+Node GetBody(Document& doc);
+
+/**
+ * Searches a node for a child node by name.
+ * \note
+ * Name is case-insensitiv.
+ * returns a pointer to the first node found or a nullptr.
+ */
+Node GetNode(Node& Parent, std::string Name);
+
+/**
+ * Searches a node for a child node by name and attribute-value pair.
+ * \note
+ * Name and AttrName are case-insensitiv.
+ * returns a pointer to the first node found or a nullptr.
+ */
+Node GetNode(Node& Parent, std::string Name, std::string AttrName, std::string AttrValue);
+
+/**
+ * Searches a node for childs with a given name.
+ * \note
+ * Name is case-insensitiv.
+ * returns a vector of nodes.
+ */
+std::vector<Node> GetNodeList(Node& Parent, std::string Name);
+
+/**
+ * Searches a node for childs with a given name and attribute-value pair.
+ * \note
+ * Name and AttrName are case-insensitiv.
+ * returns a vector of nodes.
+ */
+std::vector<Node> GetNodeList(Node& Parent, std::string Name, std::string AttrName, std::string AttrValue);
+
+
+/*******************************************************************************
  * @cond INTERNAL
  *
  * HTML::tokenizer, internal class, used in parsing.
