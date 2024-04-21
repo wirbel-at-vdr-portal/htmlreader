@@ -922,135 +922,138 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span> </div>
 <div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span> </div>
 <div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span><span class="comment">/*******************************************************************************</span></div>
-<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span><span class="comment"> * Simple helper functions.</span></div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span><span class="comment"> * \defgroup TOOLS Simple helper functions.</span></div>
 <div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span><span class="comment"> * Those are not needed to use this lib, but helpful.</span></div>
-<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span><span class="comment"> ******************************************************************************/</span></div>
-<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span><span class="comment"></span> </div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span><span class="comment">/**</span></div>
-<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span><span class="comment"> * Parses a html file and returns a Document shared pointer.</span></div>
-<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span><span class="comment"> * \note</span></div>
-<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span><span class="comment"> * Element and attribute names are always capitalized.</span></div>
-<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>Document ParseFile(std::string FileName);</div>
-<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span><span class="comment"></span> </div>
-<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="comment">/**</span></div>
-<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="comment"> * Searches a document for it&#39;s body node and returns it.</span></div>
-<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span><span class="comment"> * returns a pointer to the body node or a nullptr.</span></div>
-<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>Node GetBody(Document&amp; doc);</div>
-<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span><span class="comment"></span> </div>
-<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="comment">/**</span></div>
-<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span><span class="comment"> * Searches a node for a child node by name.</span></div>
-<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span><span class="comment"> * \note</span></div>
-<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span><span class="comment"> * Name is case-insensitiv.</span></div>
-<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span><span class="comment"> * returns a pointer to the first node found or a nullptr.</span></div>
-<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>Node GetNode(Node&amp; Parent, std::string Name);</div>
-<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span><span class="comment"></span> </div>
-<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="comment">/**</span></div>
-<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span><span class="comment"> * Searches a node for a child node by name and attribute-value pair.</span></div>
-<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span><span class="comment"> * \note</span></div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span><span class="comment"> * Name and AttrName are case-insensitiv.</span></div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span><span class="comment"> * returns a pointer to the first node found or a nullptr.</span></div>
-<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>Node GetNode(Node&amp; Parent, std::string Name, std::string AttrName, std::string AttrValue);</div>
-<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span><span class="comment"></span> </div>
-<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span><span class="comment">/**</span></div>
-<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span><span class="comment"> * Searches a node for childs with a given name.</span></div>
-<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span><span class="comment"> * \note</span></div>
-<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span><span class="comment"> * Name is case-insensitiv.</span></div>
-<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span><span class="comment"> * returns a vector of nodes.</span></div>
-<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>std::vector&lt;Node&gt; GetNodeList(Node&amp; Parent, std::string Name);</div>
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span><span class="comment"></span> </div>
-<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span><span class="comment">/**</span></div>
-<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span><span class="comment"> * Searches a node for childs with a given name and attribute-value pair.</span></div>
-<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span><span class="comment"> * \note</span></div>
-<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span><span class="comment"> * Name and AttrName are case-insensitiv.</span></div>
-<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span><span class="comment"> * returns a vector of nodes.</span></div>
-<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>std::vector&lt;Node&gt; GetNodeList(Node&amp; Parent, std::string Name, std::string AttrName, std::string AttrValue);</div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span> </div>
-<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span> </div>
-<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span><span class="comment">/*******************************************************************************</span></div>
-<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span><span class="comment"> * @cond INTERNAL</span></div>
-<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span><span class="comment"> * HTML::tokenizer, internal class, used in parsing.</span></div>
-<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span><span class="comment"> ******************************************************************************/</span></div>
-<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span><span class="keyword">class </span>token_iterator {</div>
-<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>  <span class="keyword">typedef</span> std::string::const_iterator const_char_iterator;</div>
-<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>  <span class="keyword">typedef</span> std::unordered_map&lt;std::string, std::string&gt; attribute_list_type;</div>
-<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span> </div>
-<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>  <span class="keyword">struct </span>token {</div>
-<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>     <span class="keyword">enum class</span> token_type {</div>
-<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>        illegal,</div>
-<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>        doctype,</div>
-<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>        start_tag,</div>
-<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>        end_tag,</div>
-<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>        comment,</div>
-<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>        string, <span class="comment">// Any textual data.</span></div>
-<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>        end_of_file</div>
-<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>        };</div>
-<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>           </div>
-<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span>     token_type type;</div>
-<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>     String value;</div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span><span class="comment"> * doxygen: @{</span></div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span><span class="comment"> ******************************************************************************/</span></div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span><span class="comment"></span> </div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span><span class="comment"> * Parses a html file and returns a Document shared pointer.</span></div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span><span class="comment"> * \note</span></div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span><span class="comment"> * Element and attribute names are always capitalized.</span></div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno"><a class="line" href="group__TOOLS.html#gadfc86240ff64e2dcc3ce5a4190ff0f11">  839</a></span>Document <a class="code hl_function" href="group__TOOLS.html#gadfc86240ff64e2dcc3ce5a4190ff0f11">ParseFile</a>(std::string FileName);</div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="comment"></span> </div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span><span class="comment"> * Searches a document for it&#39;s body node and returns it.</span></div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span><span class="comment"> * returns a pointer to the body node or a nullptr.</span></div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno"><a class="line" href="group__TOOLS.html#gab486da6ce1facebd4be2c89fd429ded9">  845</a></span>Node <a class="code hl_function" href="group__TOOLS.html#gab486da6ce1facebd4be2c89fd429ded9">GetBody</a>(Document&amp; doc);</div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="comment"></span> </div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span><span class="comment"> * Searches a node for a child node by name.</span></div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span><span class="comment"> * \note</span></div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span><span class="comment"> * Name is case-insensitiv.</span></div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span><span class="comment"> * returns a pointer to the first node found or a nullptr.</span></div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga9eede55929f9ea6ad4c58a457ac97845">  853</a></span>Node <a class="code hl_function" href="group__TOOLS.html#ga9eede55929f9ea6ad4c58a457ac97845">GetNode</a>(Node&amp; Parent, std::string Name);</div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="comment"></span> </div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span><span class="comment"> * Searches a node for a child node by name and attribute-value pair.</span></div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span><span class="comment"> * \note</span></div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span><span class="comment"> * Name and AttrName are case-insensitiv.</span></div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span><span class="comment"> * returns a pointer to the first node found or a nullptr.</span></div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga7adb0c06cc061b89bd909c8a3df4f3f8">  861</a></span>Node <a class="code hl_function" href="group__TOOLS.html#ga9eede55929f9ea6ad4c58a457ac97845">GetNode</a>(Node&amp; Parent, std::string Name, std::string AttrName, std::string AttrValue);</div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span><span class="comment"></span> </div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span><span class="comment"> * Searches a node for childs with a given name.</span></div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span><span class="comment"> * \note</span></div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span><span class="comment"> * Name is case-insensitiv.</span></div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span><span class="comment"> * returns a vector of nodes.</span></div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga274a6d209ce9b896d7e37fa3b788ede8">  869</a></span>std::vector&lt;Node&gt; <a class="code hl_function" href="group__TOOLS.html#ga274a6d209ce9b896d7e37fa3b788ede8">GetNodeList</a>(Node&amp; Parent, std::string Name);</div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span><span class="comment"></span> </div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span><span class="comment"> * Searches a node for childs with a given name and attribute-value pair.</span></div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span><span class="comment"> * \note</span></div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span><span class="comment"> * Name and AttrName are case-insensitiv.</span></div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span><span class="comment"> * returns a vector of nodes.</span></div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga31ae49a96c8871977c087af4f04c3b82">  877</a></span>std::vector&lt;Node&gt; <a class="code hl_function" href="group__TOOLS.html#ga274a6d209ce9b896d7e37fa3b788ede8">GetNodeList</a>(Node&amp; Parent, std::string Name, std::string AttrName, std::string AttrValue);</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span><span class="comment"></span> </div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span><span class="comment">/**  doxygen: end of TOOLS group. @} */</span></div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span> </div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span> </div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span><span class="comment">/*******************************************************************************</span></div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span><span class="comment"> * @cond INTERNAL</span></div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span><span class="comment"> * HTML::tokenizer, internal class, used in parsing.</span></div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span><span class="comment"> ******************************************************************************/</span></div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span><span class="keyword">class </span>token_iterator {</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>  <span class="keyword">typedef</span> std::string::const_iterator const_char_iterator;</div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>  <span class="keyword">typedef</span> std::unordered_map&lt;std::string, std::string&gt; attribute_list_type;</div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span> </div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>  <span class="keyword">struct </span>token {</div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>     <span class="keyword">enum class</span> token_type {</div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>        illegal,</div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>        doctype,</div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>        start_tag,</div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>        end_tag,</div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>        comment,</div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>        string, <span class="comment">// Any textual data.</span></div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span>        end_of_file</div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>        };</div>
 <div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span>           </div>
-<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>     <span class="keywordtype">bool</span> has_attributes;</div>
-<div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>     attribute_list_type attributes;</div>
-<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>     };</div>
-<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span> </div>
-<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span>  token_iterator(<span class="keyword">const</span> std::string&amp; html);</div>
-<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>  token* operator-&gt;();</div>
-<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>  token_iterator&amp; operator++();</div>
-<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>  <span class="keywordtype">bool</span> has_next() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>  token next();</div>
-<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>  <span class="keyword">enum class</span> tokenizer_state {</div>
-<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>     data,</div>
-<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span>     tag_open,</div>
-<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>     end_tag_open,</div>
-<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span>     tag_name,</div>
-<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span>     before_attribute_name,</div>
-<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span>     attribute_name,</div>
-<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>     before_attribute_value,</div>
-<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>     unquoted_attribute_value</div>
-<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>     };</div>
-<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span> </div>
-<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>  <span class="keyword">const</span> std::string html_;</div>
-<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>  const_char_iterator it_html_;</div>
-<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span>  token current_token_;</div>
-<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span>  tokenizer_state state_;</div>
-<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span>  String curr_attribute_name_;</div>
-<div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span>  String curr_attribute_value_;</div>
-<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span>  <span class="keywordtype">bool</span> on_data_state();</div>
-<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>  <span class="keywordtype">bool</span> on_tag_open_state();</div>
-<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>  <span class="keywordtype">bool</span> on_end_tag_open_state();</div>
-<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span>  <span class="keywordtype">bool</span> on_tag_name_state();</div>
-<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>  <span class="keywordtype">bool</span> on_before_attribute_name_state();</div>
-<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>  <span class="keywordtype">bool</span> on_attribute_name_state();</div>
-<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span>  <span class="keywordtype">bool</span> on_before_attribute_value_state();</div>
-<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>  <span class="keywordtype">bool</span> on_unquoted_attribute_value_state();</div>
-<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>  token scan_string_token();</div>
-<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span><span class="comment"></span> </div>
-<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span><span class="comment">  /**</span></div>
-<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span><span class="comment">   * @return true if EOF reached while scanning.</span></div>
-<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span>  <span class="keywordtype">bool</span> is_eof() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span><span class="comment"></span> </div>
-<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span><span class="comment">  /**</span></div>
-<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span><span class="comment">   * Creates new current token if current character is ASCII letter.</span></div>
-<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span><span class="comment">   * Sets new scanner state.</span></div>
-<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span><span class="comment">   *</span></div>
-<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span><span class="comment">   * @param type new token type.</span></div>
-<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span><span class="comment">   * @param new_state new tokenizer state.</span></div>
-<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span>  <span class="keywordtype">void</span> create_tag_token_if_curr_char_is_letter(token::token_type type,</div>
-<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>                                               tokenizer_state new_state);</div>
-<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>};</div>
-<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span><span class="comment">/* @endcond */</span></div>
-<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span> </div>
-<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>} <span class="comment">// HTML.</span></div>
+<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>     token_type type;</div>
+<div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>     String value;</div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>           </div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>     <span class="keywordtype">bool</span> has_attributes;</div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span>     attribute_list_type attributes;</div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>     };</div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span> </div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>  token_iterator(<span class="keyword">const</span> std::string&amp; html);</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>  token* operator-&gt;();</div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>  token_iterator&amp; operator++();</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>  <span class="keywordtype">bool</span> has_next() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>  token next();</div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>  <span class="keyword">enum class</span> tokenizer_state {</div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span>     data,</div>
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span>     tag_open,</div>
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span>     end_tag_open,</div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>     tag_name,</div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>     before_attribute_name,</div>
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>     attribute_name,</div>
+<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span>     before_attribute_value,</div>
+<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>     unquoted_attribute_value</div>
+<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>     };</div>
+<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span> </div>
+<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span>  <span class="keyword">const</span> std::string html_;</div>
+<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span>  const_char_iterator it_html_;</div>
+<div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span>  token current_token_;</div>
+<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span>  tokenizer_state state_;</div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>  String curr_attribute_name_;</div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>  String curr_attribute_value_;</div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span>  <span class="keywordtype">bool</span> on_data_state();</div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>  <span class="keywordtype">bool</span> on_tag_open_state();</div>
+<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>  <span class="keywordtype">bool</span> on_end_tag_open_state();</div>
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span>  <span class="keywordtype">bool</span> on_tag_name_state();</div>
+<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>  <span class="keywordtype">bool</span> on_before_attribute_name_state();</div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>  <span class="keywordtype">bool</span> on_attribute_name_state();</div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span>  <span class="keywordtype">bool</span> on_before_attribute_value_state();</div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span>  <span class="keywordtype">bool</span> on_unquoted_attribute_value_state();</div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span>  token scan_string_token();</div>
+<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span><span class="comment"></span> </div>
+<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span><span class="comment">  /**</span></div>
+<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span><span class="comment">   * @return true if EOF reached while scanning.</span></div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>  <span class="keywordtype">bool</span> is_eof() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span><span class="comment"></span> </div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span><span class="comment">  /**</span></div>
+<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span><span class="comment">   * Creates new current token if current character is ASCII letter.</span></div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span><span class="comment">   * Sets new scanner state.</span></div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span><span class="comment">   *</span></div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span><span class="comment">   * @param type new token type.</span></div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span><span class="comment">   * @param new_state new tokenizer state.</span></div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span>  <span class="keywordtype">void</span> create_tag_token_if_curr_char_is_letter(token::token_type type,</div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span>                                               tokenizer_state new_state);</div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>};</div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span><span class="comment">/* @endcond */</span></div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span> </div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span>} <span class="comment">// HTML.</span></div>
 <div class="ttc" id="aclassHTML_1_1attribute_html"><div class="ttname"><a href="classHTML_1_1attribute.html">HTML::attribute</a></div><div class="ttdef"><b>Definition</b> htmlreader.h:504</div></div>
 <div class="ttc" id="aclassHTML_1_1attribute_html_a12aeff34feb71debd6d1e901796ef3a7"><div class="ttname"><a href="classHTML_1_1attribute.html#a12aeff34feb71debd6d1e901796ef3a7">HTML::attribute::operator!=</a></div><div class="ttdeci">bool operator!=(const attribute &amp;attr) const</div></div>
 <div class="ttc" id="aclassHTML_1_1attribute_html_a6db757f57a2455958ac141b014fc959c"><div class="ttname"><a href="classHTML_1_1attribute.html#a6db757f57a2455958ac141b014fc959c">HTML::attribute::name</a></div><div class="ttdeci">String name() const</div></div>
@@ -1134,6 +1137,10 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassHTML_1_1parser_html_acf8fd2e40372669035e15e102a0bc0e5"><div class="ttname"><a href="classHTML_1_1parser.html#acf8fd2e40372669035e15e102a0bc0e5">HTML::parser::get_document</a></div><div class="ttdeci">Document get_document() const</div></div>
 <div class="ttc" id="aclassHTML_1_1parser_html_aee58c1f3c3da40f0dbffb5443b37f3f9"><div class="ttname"><a href="classHTML_1_1parser.html#aee58c1f3c3da40f0dbffb5443b37f3f9">HTML::parser::parse_escapes</a></div><div class="ttdeci">static const unsigned int parse_escapes</div><div class="ttdef"><b>Definition</b> htmlreader.h:684</div></div>
 <div class="ttc" id="aclassHTML_1_1parser_html_af16ff30213b1635ee11b094e387ba35e"><div class="ttname"><a href="classHTML_1_1parser.html#af16ff30213b1635ee11b094e387ba35e">HTML::parser::status_description</a></div><div class="ttdeci">static String status_description(parse_status status)</div></div>
+<div class="ttc" id="agroup__TOOLS_html_ga274a6d209ce9b896d7e37fa3b788ede8"><div class="ttname"><a href="group__TOOLS.html#ga274a6d209ce9b896d7e37fa3b788ede8">HTML::GetNodeList</a></div><div class="ttdeci">std::vector&lt; Node &gt; GetNodeList(Node &amp;Parent, std::string Name)</div></div>
+<div class="ttc" id="agroup__TOOLS_html_ga9eede55929f9ea6ad4c58a457ac97845"><div class="ttname"><a href="group__TOOLS.html#ga9eede55929f9ea6ad4c58a457ac97845">HTML::GetNode</a></div><div class="ttdeci">Node GetNode(Node &amp;Parent, std::string Name)</div></div>
+<div class="ttc" id="agroup__TOOLS_html_gab486da6ce1facebd4be2c89fd429ded9"><div class="ttname"><a href="group__TOOLS.html#gab486da6ce1facebd4be2c89fd429ded9">HTML::GetBody</a></div><div class="ttdeci">Node GetBody(Document &amp;doc)</div></div>
+<div class="ttc" id="agroup__TOOLS_html_gadfc86240ff64e2dcc3ce5a4190ff0f11"><div class="ttname"><a href="group__TOOLS.html#gadfc86240ff64e2dcc3ce5a4190ff0f11">HTML::ParseFile</a></div><div class="ttdeci">Document ParseFile(std::string FileName)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

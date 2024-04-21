@@ -826,8 +826,9 @@ private:
 
 
 /*******************************************************************************
- * Simple helper functions.
+ * \defgroup TOOLS Simple helper functions.
  * Those are not needed to use this lib, but helpful.
+ * doxygen: @{
  ******************************************************************************/
 
 /**
@@ -874,6 +875,8 @@ std::vector<Node> GetNodeList(Node& Parent, std::string Name);
  * returns a vector of nodes.
  */
 std::vector<Node> GetNodeList(Node& Parent, std::string Name, std::string AttrName, std::string AttrValue);
+
+/**  doxygen: end of TOOLS group. @} */
 
 
 /*******************************************************************************
