@@ -842,7 +842,7 @@ Document ParseFile(std::string FileName);
  * Searches a document for it's body node and returns it.
  * returns a pointer to the body node or a nullptr.
  */
-Node GetBody(Document& doc);
+Node GetBody(Document doc);
 
 /**
  * Searches a node for a child node by name.
@@ -850,7 +850,7 @@ Node GetBody(Document& doc);
  * Name is case-insensitiv.
  * returns a pointer to the first node found or a nullptr.
  */
-Node GetNode(Node& Parent, std::string Name);
+Node GetNode(Node Parent, std::string Name);
 
 /**
  * Searches a node for a child node by name and attribute-value pair.
@@ -858,7 +858,7 @@ Node GetNode(Node& Parent, std::string Name);
  * Name and AttrName are case-insensitiv.
  * returns a pointer to the first node found or a nullptr.
  */
-Node GetNode(Node& Parent, std::string Name, std::string AttrName, std::string AttrValue);
+Node GetNode(Node Parent, std::string Name, std::string AttrName, std::string AttrValue);
 
 /**
  * Searches a node for childs with a given name.
@@ -866,7 +866,7 @@ Node GetNode(Node& Parent, std::string Name, std::string AttrName, std::string A
  * Name is case-insensitiv.
  * returns a vector of nodes.
  */
-std::vector<Node> GetNodeList(Node& Parent, std::string Name);
+std::vector<Node> GetNodeList(Node Parent, std::string Name);
 
 /**
  * Searches a node for childs with a given name and attribute-value pair.
@@ -874,7 +874,7 @@ std::vector<Node> GetNodeList(Node& Parent, std::string Name);
  * Name and AttrName are case-insensitiv.
  * returns a vector of nodes.
  */
-std::vector<Node> GetNodeList(Node& Parent, std::string Name, std::string AttrName, std::string AttrValue);
+std::vector<Node> GetNodeList(Node Parent, std::string Name, std::string AttrName, std::string AttrValue);
 
 /**  doxygen: end of TOOLS group. @} */
 

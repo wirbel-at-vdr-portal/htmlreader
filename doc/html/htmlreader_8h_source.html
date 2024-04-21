@@ -938,7 +938,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span><span class="comment"> * Searches a document for it&#39;s body node and returns it.</span></div>
 <div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span><span class="comment"> * returns a pointer to the body node or a nullptr.</span></div>
 <div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00845" name="l00845"></a><span class="lineno"><a class="line" href="group__TOOLS.html#gab486da6ce1facebd4be2c89fd429ded9">  845</a></span>Node <a class="code hl_function" href="group__TOOLS.html#gab486da6ce1facebd4be2c89fd429ded9">GetBody</a>(Document&amp; doc);</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga6ad7cd3755004b5b1cd5cfa9f07bdfcb">  845</a></span>Node <a class="code hl_function" href="group__TOOLS.html#ga6ad7cd3755004b5b1cd5cfa9f07bdfcb">GetBody</a>(Document doc);</div>
 <div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="comment"></span> </div>
 <div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span><span class="comment">/**</span></div>
 <div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span><span class="comment"> * Searches a node for a child node by name.</span></div>
@@ -946,7 +946,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span><span class="comment"> * Name is case-insensitiv.</span></div>
 <div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span><span class="comment"> * returns a pointer to the first node found or a nullptr.</span></div>
 <div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00853" name="l00853"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga9eede55929f9ea6ad4c58a457ac97845">  853</a></span>Node <a class="code hl_function" href="group__TOOLS.html#ga9eede55929f9ea6ad4c58a457ac97845">GetNode</a>(Node&amp; Parent, std::string Name);</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno"><a class="line" href="group__TOOLS.html#gaffd6970dc3362bc0feb515f484525752">  853</a></span>Node <a class="code hl_function" href="group__TOOLS.html#gaffd6970dc3362bc0feb515f484525752">GetNode</a>(Node Parent, std::string Name);</div>
 <div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="comment"></span> </div>
 <div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span><span class="comment">/**</span></div>
 <div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span><span class="comment"> * Searches a node for a child node by name and attribute-value pair.</span></div>
@@ -954,7 +954,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span><span class="comment"> * Name and AttrName are case-insensitiv.</span></div>
 <div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span><span class="comment"> * returns a pointer to the first node found or a nullptr.</span></div>
 <div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00861" name="l00861"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga7adb0c06cc061b89bd909c8a3df4f3f8">  861</a></span>Node <a class="code hl_function" href="group__TOOLS.html#ga9eede55929f9ea6ad4c58a457ac97845">GetNode</a>(Node&amp; Parent, std::string Name, std::string AttrName, std::string AttrValue);</div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno"><a class="line" href="group__TOOLS.html#gab55964600109e99339ad6ed93f346541">  861</a></span>Node <a class="code hl_function" href="group__TOOLS.html#gaffd6970dc3362bc0feb515f484525752">GetNode</a>(Node Parent, std::string Name, std::string AttrName, std::string AttrValue);</div>
 <div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span><span class="comment"></span> </div>
 <div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span><span class="comment">/**</span></div>
 <div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span><span class="comment"> * Searches a node for childs with a given name.</span></div>
@@ -962,7 +962,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span><span class="comment"> * Name is case-insensitiv.</span></div>
 <div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span><span class="comment"> * returns a vector of nodes.</span></div>
 <div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga274a6d209ce9b896d7e37fa3b788ede8">  869</a></span>std::vector&lt;Node&gt; <a class="code hl_function" href="group__TOOLS.html#ga274a6d209ce9b896d7e37fa3b788ede8">GetNodeList</a>(Node&amp; Parent, std::string Name);</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno"><a class="line" href="group__TOOLS.html#gab357575ca5e9d66c9cd365c8790af0c6">  869</a></span>std::vector&lt;Node&gt; <a class="code hl_function" href="group__TOOLS.html#gab357575ca5e9d66c9cd365c8790af0c6">GetNodeList</a>(Node Parent, std::string Name);</div>
 <div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span><span class="comment"></span> </div>
 <div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span><span class="comment">/**</span></div>
 <div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span><span class="comment"> * Searches a node for childs with a given name and attribute-value pair.</span></div>
@@ -970,7 +970,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span><span class="comment"> * Name and AttrName are case-insensitiv.</span></div>
 <div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span><span class="comment"> * returns a vector of nodes.</span></div>
 <div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga31ae49a96c8871977c087af4f04c3b82">  877</a></span>std::vector&lt;Node&gt; <a class="code hl_function" href="group__TOOLS.html#ga274a6d209ce9b896d7e37fa3b788ede8">GetNodeList</a>(Node&amp; Parent, std::string Name, std::string AttrName, std::string AttrValue);</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno"><a class="line" href="group__TOOLS.html#ga4bb92bdc22c2e229f7923189eab93be3">  877</a></span>std::vector&lt;Node&gt; <a class="code hl_function" href="group__TOOLS.html#gab357575ca5e9d66c9cd365c8790af0c6">GetNodeList</a>(Node Parent, std::string Name, std::string AttrName, std::string AttrValue);</div>
 <div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span><span class="comment"></span> </div>
 <div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span><span class="comment">/**  doxygen: end of TOOLS group. @} */</span></div>
 <div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span> </div>
@@ -1137,10 +1137,10 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassHTML_1_1parser_html_acf8fd2e40372669035e15e102a0bc0e5"><div class="ttname"><a href="classHTML_1_1parser.html#acf8fd2e40372669035e15e102a0bc0e5">HTML::parser::get_document</a></div><div class="ttdeci">Document get_document() const</div></div>
 <div class="ttc" id="aclassHTML_1_1parser_html_aee58c1f3c3da40f0dbffb5443b37f3f9"><div class="ttname"><a href="classHTML_1_1parser.html#aee58c1f3c3da40f0dbffb5443b37f3f9">HTML::parser::parse_escapes</a></div><div class="ttdeci">static const unsigned int parse_escapes</div><div class="ttdef"><b>Definition</b> htmlreader.h:684</div></div>
 <div class="ttc" id="aclassHTML_1_1parser_html_af16ff30213b1635ee11b094e387ba35e"><div class="ttname"><a href="classHTML_1_1parser.html#af16ff30213b1635ee11b094e387ba35e">HTML::parser::status_description</a></div><div class="ttdeci">static String status_description(parse_status status)</div></div>
-<div class="ttc" id="agroup__TOOLS_html_ga274a6d209ce9b896d7e37fa3b788ede8"><div class="ttname"><a href="group__TOOLS.html#ga274a6d209ce9b896d7e37fa3b788ede8">HTML::GetNodeList</a></div><div class="ttdeci">std::vector&lt; Node &gt; GetNodeList(Node &amp;Parent, std::string Name)</div></div>
-<div class="ttc" id="agroup__TOOLS_html_ga9eede55929f9ea6ad4c58a457ac97845"><div class="ttname"><a href="group__TOOLS.html#ga9eede55929f9ea6ad4c58a457ac97845">HTML::GetNode</a></div><div class="ttdeci">Node GetNode(Node &amp;Parent, std::string Name)</div></div>
-<div class="ttc" id="agroup__TOOLS_html_gab486da6ce1facebd4be2c89fd429ded9"><div class="ttname"><a href="group__TOOLS.html#gab486da6ce1facebd4be2c89fd429ded9">HTML::GetBody</a></div><div class="ttdeci">Node GetBody(Document &amp;doc)</div></div>
+<div class="ttc" id="agroup__TOOLS_html_ga6ad7cd3755004b5b1cd5cfa9f07bdfcb"><div class="ttname"><a href="group__TOOLS.html#ga6ad7cd3755004b5b1cd5cfa9f07bdfcb">HTML::GetBody</a></div><div class="ttdeci">Node GetBody(Document doc)</div></div>
+<div class="ttc" id="agroup__TOOLS_html_gab357575ca5e9d66c9cd365c8790af0c6"><div class="ttname"><a href="group__TOOLS.html#gab357575ca5e9d66c9cd365c8790af0c6">HTML::GetNodeList</a></div><div class="ttdeci">std::vector&lt; Node &gt; GetNodeList(Node Parent, std::string Name)</div></div>
 <div class="ttc" id="agroup__TOOLS_html_gadfc86240ff64e2dcc3ce5a4190ff0f11"><div class="ttname"><a href="group__TOOLS.html#gadfc86240ff64e2dcc3ce5a4190ff0f11">HTML::ParseFile</a></div><div class="ttdeci">Document ParseFile(std::string FileName)</div></div>
+<div class="ttc" id="agroup__TOOLS_html_gaffd6970dc3362bc0feb515f484525752"><div class="ttname"><a href="group__TOOLS.html#gaffd6970dc3362bc0feb515f484525752">HTML::GetNode</a></div><div class="ttdeci">Node GetNode(Node Parent, std::string Name)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

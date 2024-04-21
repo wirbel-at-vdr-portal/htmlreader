@@ -32,7 +32,7 @@ Document ParseFile(std::string FileName) {
 }
 
 
-Node GetBody(Document& doc) {
+Node GetBody(Document doc) {
   auto tags = doc->get_elements_by_tag_name("BODY");
   if (tags.size() != 1) {
      //std::cerr << "Error: could not find html body: size == " << tags.size() << std::endl;
@@ -42,7 +42,7 @@ Node GetBody(Document& doc) {
 }
 
 
-Node GetNode(Node& Parent, std::string Name) {
+Node GetNode(Node Parent, std::string Name) {
   Name = UpperCase(Name);
   for(auto node:Parent->child_nodes()) {
      if (node->name() == Name) {
@@ -53,7 +53,7 @@ Node GetNode(Node& Parent, std::string Name) {
 }
 
 
-Node GetNode(Node& Parent, std::string Name, std::string AttrName, std::string AttrValue) {
+Node GetNode(Node Parent, std::string Name, std::string AttrName, std::string AttrValue) {
   Name = UpperCase(Name);
   AttrName = UpperCase(AttrName);
   for(auto node:Parent->child_nodes()) {
@@ -71,7 +71,7 @@ Node GetNode(Node& Parent, std::string Name, std::string AttrName, std::string A
 }
 
 
-std::vector<Node> GetNodeList(Node& Parent, std::string Name) {
+std::vector<Node> GetNodeList(Node Parent, std::string Name) {
   std::vector<Node> result;
   Name = UpperCase(Name);
   for(auto node:Parent->child_nodes()) {
@@ -84,7 +84,7 @@ std::vector<Node> GetNodeList(Node& Parent, std::string Name) {
 }
 
 
-std::vector<Node> GetNodeList(Node& Parent, std::string Name, std::string AttrName, std::string AttrValue) {
+std::vector<Node> GetNodeList(Node Parent, std::string Name, std::string AttrName, std::string AttrValue) {
   std::vector<Node> result;
   Name = UpperCase(Name);
   AttrName = UpperCase(AttrName);
