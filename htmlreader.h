@@ -610,14 +610,14 @@ public:
    * chartype_t is shared between parser and tokenizer.
    */
   enum chartype_t {
-     ct_parse_pcdata = 1,     // Parse until \0, <
-     ct_parse_attr = 2,       // Parse until \0, \r, \t, \n, >, space
-     ct_parse_attr_ws = 4,    // Parse until \0, &, \r, ', ", \n, tab
-     ct_space = 8,            // Parse until \r, \n, space, tab
-     ct_parse_cdata = 16,     // Parse until \0, ], >, \r
-     ct_parse_comment = 32,   // Parse until \0, -, >, \r
-     ct_symbol = 64,          // Any symbol > 127, a-z, A-Z, 0-9, _, :, -, .
-     ct_start_symbol = 128    // Any symbol > 127, a-z, A-Z, _, :
+     ct_parse_pcdata  = (1 << 0), // Parse until \0, <
+     ct_parse_attr    = (1 << 1), // Parse until \0, \r, \t, \n, >, space
+     ct_parse_attr_ws = (1 << 2), // Parse until \0, &, \r, ', ", \n, tab
+     ct_space         = (1 << 3), // Parse until \r, \n, space, tab
+     ct_parse_cdata   = (1 << 4), // Parse until \0, ], >, \r
+     ct_parse_comment = (1 << 5), // Parse until \0, -, >, \r
+     ct_symbol        = (1 << 6), // Any symbol > 127, a-z, A-Z, 0-9, _, :, -, .
+     ct_start_symbol  = (1 << 7)  // Any symbol > 127, a-z, A-Z, _, :
      };
 
   /**
@@ -648,25 +648,25 @@ public:
    * Only elements and PCDATA sections are added to the DOM tree, no text
    * conversions are performed.
    */
-  static const unsigned int parse_minimal = 0x0000;
+  static const unsigned parse_minimal = 0;
 
   /**
    * This flag determines if processing instructions (node_pi) are added
    * to the DOM tree. This flag is off by default.
    */
-  static const unsigned int parse_pi = 0x0001;
+  static const unsigned parse_pi = (1 << 0);
 
   /**
    * This flag determines if comments (node_comment) are added to the
    * DOM tree. This flag is off by default.
    */
-  static const unsigned int parse_comments = 0x0002;
+  static const unsigned parse_comments = (1 << 1);
 
   /**
    * This flag determines if CDATA sections (node_cdata) are added to
    * the DOM tree. This flag is on by default.
    */
-  static const unsigned int parse_cdata = 0x0004;
+  static const unsigned parse_cdata = (1 << 2);
 
   /**
    * This flag determines if plain character data (node_pcdata) that
@@ -675,43 +675,43 @@ public:
    * parsing and more memory consumption.
    * NOTE: currently this option is disabled.
    */
-  static const unsigned int parse_ws_pcdata = 0x0008;
+  static const unsigned parse_ws_pcdata = (1 << 3);
 
   /**
    * This flag determines if character and entity references are expanded
    * during parsing. This flag is on by default.
    */
-  static const unsigned int parse_escapes = 0x0010;
+  static const unsigned parse_escapes = (1 << 4);
 
   /**
    * This flag determines if EOL characters are normalized
    * (converted to 0xA) during parsing. This flag is on by default.
    */
-  static const unsigned int parse_eol = 0x0020;
+  static const unsigned parse_eol = (1 << 5);
 
   /**
    * This flag determines if attribute values are normalized using CDATA
    * normalization rules during parsing. This flag is on by default.
    */
-  static const unsigned int parse_wconv_attribute = 0x0040;
+  static const unsigned parse_wconv_attribute = (1 << 6);
 
   /**
    * This flag determines if attribute values are normalized using
    * NMTOKENS normalization rules during parsing. This flag is off by default.
    */
-  static const unsigned int parse_wnorm_attribute = 0x0080;
+  static const unsigned parse_wnorm_attribute = (1 << 7);
 
   /**
    * This flag determines if document declaration (node_declaration) is
    *  added to the DOM tree. This flag is off by default.
    */
-  static const unsigned int parse_declaration = 0x0100;
+  static const unsigned parse_declaration = (1 << 8);
 
   /**
    * This flag determines if document type declaration (node_doctype) is
    * added to the DOM tree. This flag is off by default.
    */
-  static const unsigned int parse_doctype = 0x0200;
+  static const unsigned parse_doctype = (1 << 9);
 
   /**
    * The default parsing mode.
@@ -720,10 +720,10 @@ public:
    * are normalized, attribute values are normalized using CDATA
    * normalization rules.
    */
-  static const unsigned int parse_default = parse_cdata
-                                          | parse_escapes
-                                          | parse_wconv_attribute
-                                          | parse_eol;
+  static const unsigned parse_default = parse_cdata
+                                      | parse_escapes
+                                      | parse_wconv_attribute
+                                      | parse_eol;
 
   /**
    * The full parsing mode.
@@ -731,11 +731,11 @@ public:
    * entities are expanded, End-of-Line characters are normalized,
    * attribute values are normalized using CDATA normalization rules.
    */
-  static const unsigned int parse_full = parse_default
-                                       | parse_pi
-                                       | parse_comments
-                                       | parse_declaration
-                                       | parse_doctype;
+  static const unsigned parse_full = parse_default
+                                   | parse_pi
+                                   | parse_comments
+                                   | parse_declaration
+                                   | parse_doctype;
 
 public:
 
