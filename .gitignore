@@ -1,5 +1,7 @@
 *.o
 *.dll
+*.a
+*.la
 *.so.*
 *.so
 *.txt
