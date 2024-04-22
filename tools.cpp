@@ -103,5 +103,24 @@ std::vector<Node> GetNodeList(Node Parent, std::string Name, std::string AttrNam
 }
 
 
+Attribute GetAttribute(Node Parent, std::string Name) {
+  Name = UpperCase(Name);
+  for(auto it = Parent->attributes_begin(); it != Parent->attributes_end(); it++) {
+     if ((*it)->name() == Name)
+        return *it;
+     }
+  return nullptr;
+}
+
+
+std::vector<Attribute> GetAttributeList(Node Parent, std::string Name) {
+  std::vector<Attribute> result;
+  Name = UpperCase(Name);
+  for(auto it = Parent->attributes_begin(); it != Parent->attributes_end(); it++) {
+     if ((*it)->name() == Name)
+        result.push_back(*it);
+     }
+  return result;
+}
 
 } // namespace HTML

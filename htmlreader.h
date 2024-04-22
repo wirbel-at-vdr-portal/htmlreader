@@ -876,6 +876,22 @@ std::vector<Node> GetNodeList(Node Parent, std::string Name);
  */
 std::vector<Node> GetNodeList(Node Parent, std::string Name, std::string AttrName, std::string AttrValue);
 
+/**
+ * Searches a node for a attribute by name.
+ * \note
+ * Name is case-insensitiv.
+ * returns a pointer to the first attribute found or a nullptr.
+ */
+Attribute GetAttribute(Node Parent, std::string Name);
+
+/**
+ * Searches a node for attributes with a given name.
+ * \note
+ * Name is case-insensitiv.
+ * returns a vector of attributes.
+ */
+std::vector<Attribute> GetAttributeList(Node Parent, std::string Name);
+
 /**  doxygen: end of TOOLS group. @} */
 
 
