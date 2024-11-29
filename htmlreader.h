@@ -115,6 +115,16 @@ public:
   void name(const String& name);
 
   /**
+   * @returns node number, which assigned as the node is created.
+   */
+  int number() const { return Number; }
+
+  /**
+   * Sets node number. only to be called while creating this one
+   */
+  void number(int n) { Number = n; }
+
+  /**
    * @return text inside node.
    */
   String value() const;
@@ -428,6 +438,7 @@ private:
   String name_;
   String value_;
   node_type type_;
+  int Number;
 
   std::list<Node> children_;
   std::list<Attribute> attributes_;
@@ -744,6 +755,8 @@ public:
    */
   parser(unsigned int options = parse_default);
 
+  void Debug(void) { debug = true; }
+
   /**
    * Parses the specified HTML string and returns document object
    * representing the HTML document tree.
@@ -773,6 +786,7 @@ private:
   Char* error_offset_ = nullptr;
   Document document_;
   Node current_node_;
+  bool debug;
 
   /**
    * Checks if the specified parsing option is set.

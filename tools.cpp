@@ -3,6 +3,7 @@
 #include <sstream> // std::stringstream
 #include <fstream> // std::ifstream
 #include <iostream>
+#include <algorithm> // std::transform
 
 std::stringstream ReadFileToStream(std::string aFileName) {
   std::stringstream ss;
@@ -32,12 +33,18 @@ Document ParseFile(std::string FileName) {
 
 
 Node GetBody(Document doc) {
-  auto tags = doc->get_elements_by_tag_name("BODY");
+/*  auto tags = doc->get_elements_by_tag_name("BODY");
   if (tags.size() != 1) {
-     //std::cerr << "Error: could not find html body: size == " << tags.size() << std::endl;
+     std::cerr << "Error: could not find html body: size == " << tags.size() << std::endl;
      return nullptr;
      }
   return tags[0];
+*/
+  Node html = GetNode(doc, "HTML");
+  if (html)
+     return GetNode(html, "BODY");
+  std::cerr << "Error: could not find html node" << std::endl;
+  return nullptr;
 }
 
 

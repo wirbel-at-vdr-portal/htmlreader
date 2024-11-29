@@ -1,3 +1,4 @@
+#include <iostream>
 #include <new>
 #include <algorithm>
 #include <iterator>
@@ -40,7 +41,14 @@ String node::name() const {
 
 
 void node::name(const String& name) {
-  this->name_ = name;
+  size_t p = name.find_first_of(" \t");
+  if (p == std::string::npos)
+     this->name_ = name;
+  else {
+     std::cerr << __PRETTY_FUNCTION__ << ": using '" << name.substr(0, p-1)
+               << "' instead of '" << name << "'" << std::endl;
+     this->name_ = name.substr(0, p-1);
+     }
 }
 
 
@@ -377,8 +385,15 @@ bool node::traverse(node_walker& walker) {
 
   walker.depth_ = 0;
   Node child = this->first_child();
+  std::string childname("null");
+  if (child) childname = child->name();
+  std::cout << __PRETTY_FUNCTION__ << ":" << __LINE__ << ": child=" << childname << std::endl;
+
   if (child) {
      ++walker.depth_;
+
+     std::cout << __PRETTY_FUNCTION__ << ":" << __LINE__ << ": child->first_child()=" << child->first_child() << std::endl;
+     std::cout << __PRETTY_FUNCTION__ << ":" << __LINE__ << ": child->next_sibling()=" << child->next_sibling() << std::endl;
 
      do {
         if (!walker.for_each(child))
@@ -388,8 +403,9 @@ bool node::traverse(node_walker& walker) {
            ++walker.depth_;
            child = child->first_child();
            }
-        else if (child->next_sibling())
+        else if (child->next_sibling()) {
            child = child->next_sibling();
+           }
         else {
            // Borland C++ workaround
            while(!child->next_sibling() && walker.depth_ > 0 && child->parent()) {

@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cassert>
 #include <cstring>
 #include <algorithm>
@@ -9,6 +10,8 @@
 
 
 namespace HTML {
+
+int CurrentNumber;
 
 class parse_error : public std::runtime_error {
 public:
@@ -96,13 +99,15 @@ inline bool autoclose_prev_sibling(const std::string& tag_name, const std::strin
    *  </ul>
    */
   std::unordered_map<String, std::set<String> > no_end_tag_by_sibling = {
-     {"LI", {"LI"}},
-     {"TD", {"TD"}},
-     {"TR", {"TR", "TD"}},
-     {"TH", {"TH"}},
-     {"TBODY", {"THEAD"}},
-     {"DD", {"DD", "DT"}},
-     {"DT", {"DT"}}
+     // name , siblings
+     {"LI"   , {"LI"      }},
+     {"TD"   , {"TD"      }},
+     {"TR"   , {"TR", "TD"}},
+     {"TH"   , {"TH"      }},
+     {"TBODY", {"THEAD"   }},
+     {"DD"   , {"DD", "DT"}},
+     {"DT"   , {"DT"      }},
+     {"P"    , {"P"       }}  // a new p should close previous one.
      };
 
   auto it_siblings = no_end_tag_by_sibling.find(tag_name);
@@ -263,7 +268,8 @@ const Char* parser::advance_doctype_group(const Char* s, Char endch, bool top_le
 parser::parser(unsigned int options) :
   options_(options),
   document_(document::create()),
-  current_node_(document_) { }
+  current_node_(document_),
+  debug(false) { }
 
 
 const Char* parser::parse_exclamation(const Char* s, Char endch) {
@@ -378,9 +384,13 @@ Node find_parent_node_for_new_tag(Node current_node, const String& new_tag_name)
 
 Document parser::parse(const String& str_html) {
   this->status_ = status_ok;
+  CurrentNumber = 1;
 
-  if (str_html.size() == 0)
+  if (str_html.size() == 0) {
+     if (debug)
+        std::cerr << __PRETTY_FUNCTION__ << ": cannot parse empty string." << std::endl;
      return this->document_;
+     }
 
   const Char* s = str_html.c_str();
 
@@ -388,6 +398,7 @@ Document parser::parse(const String& str_html) {
   bool last_element_void = false;
 
   auto on_tag_start = [&](const std::string& tag_name) {
+     if (debug) std::cerr << "<" << tag_name << " (" << std::to_string(CurrentNumber) << ")";
      if (last_element_void) {
         this->current_node_ = this->current_node_->parent();
         last_element_void = false;
@@ -395,23 +406,45 @@ Document parser::parse(const String& str_html) {
 
      auto node = node::create(node::node_element);
      node->name(tag_name);
+     node->number(CurrentNumber++);
 
      auto new_tag_parent = find_parent_node_for_new_tag(this->current_node_, tag_name);
      new_tag_parent->append_child(node);
+     if (debug) std::cerr << ": parent = " << new_tag_parent->name()
+                          << " (" << std::to_string(new_tag_parent->number()) << ")" << std::endl;
 
      this->current_node_ = node;
      };
 
   auto on_closing_tag = [&](const std::string& tag_name) {
+     if (debug) std::cerr << "</" << tag_name << ">;  current node: " << this->current_node_->name() << " (" << std::to_string(this->current_node_->number()) << ")" << std::endl;
      if (tag_name != this->current_node_->name() &&
          (autoclose_last_child(this->current_node_->name()) || last_element_void)) {
-
+        if (debug) {
+           std::string ac = autoclose_last_child(this->current_node_->name()) ? "true" : "false";
+           std::string ev = last_element_void ? "true" : "false";
+           std::cerr << "autoclose = " << ac << " last_element_void = " << ev << std::endl;
+           }
         if (last_element_void) {
            this->current_node_ = this->current_node_->parent();
+           if (debug)
+              std::cerr << "last_element_void; current node = " << this->current_node_->name()
+                        << "(" << std::to_string(this->current_node_->number()) << ")" << std::endl;
            }
         else
            while(autoclose_last_child(this->current_node_->name())) {
               this->current_node_ = this->current_node_->parent();
+              // CHECK THE NEXT IF()..
+              if (tag_name == this->current_node_->name()) {
+                 if (debug)
+                    std::cerr << "stop autoclose on " << this->current_node_->name()
+                              << "(" << std::to_string(this->current_node_->number()) << ") "
+                              << "parent = " << this->current_node_->parent()->number() << std::endl;
+                 break;
+                 }
+              if (debug)
+                 std::cerr << "autoclose_last_child; current node = " << this->current_node_->name()
+                           << "(" << std::to_string(this->current_node_->number()) << ")" << std::endl;
               }
 
         last_element_void = false;
@@ -419,6 +452,11 @@ Document parser::parse(const String& str_html) {
 
      const String& expected_name = this->current_node_->name();
      if (expected_name != tag_name) {
+        //if (debug) {
+        // std::string text(s, 160);
+        // //size_t p = text.find("\n");
+        // std::cerr << "line='" << /*text.substr(0,p-1)*/ text << "'" << std::endl;
+        // }
         std::string err_msg = "Expected: '"
                             + expected_name
                             + "', found: '" + tag_name + "'";
@@ -432,6 +470,7 @@ Document parser::parse(const String& str_html) {
      };
 
   auto on_pcdata = [&](const std::string& pcdata) {
+     if (debug and pcdata.find_first_not_of(" \t\n") != std::string::npos) std::cerr << "pcdata: '" << pcdata << "'" << std::endl;
      if (last_element_void) {
         this->current_node_ = this->current_node_->parent();
         last_element_void = false;
@@ -442,17 +481,20 @@ Document parser::parse(const String& str_html) {
      };
 
   auto on_attribute = [&](const std::string& attr_name, const std::string& attr_val) {
+     if (debug) std::cerr << "  " << attr_name << " = '" << attr_val << "'" << std::endl;
      auto attr = attribute::create(attr_name, attr_val);
      this->current_node_->append_attribute(attr);
      };
 
   auto on_script = [&](const String& script_value) {
+     if (debug) std::cerr << "script: '" << script_value << "'" << std::endl;
      auto node = node::create(node::node_cdata);
      node->value(script_value);
      this->current_node_->append_child(node);
      };
 
   auto parse_pcdata = [&]() {
+     //if (debug) std::cerr << "parse_pcdata" << std::endl;
      const Char* pcdata_start = s;
      while(!is_chartype(*s, parser::ct_parse_pcdata)) ++s;
      size_t pcdata_len = (s - 1) - pcdata_start + 1;
@@ -461,6 +503,7 @@ Document parser::parse(const String& str_html) {
      };
 
   auto parse_script = [&]() {
+     if (debug) std::cerr << "parse_script" << std::endl;
      const Char* script_value_start = s;
      const Char* script_value_end = s;
 
@@ -479,6 +522,7 @@ Document parser::parse(const String& str_html) {
      };
 
   auto on_attribute_name_state = [&]() {
+     //if (debug) std::cerr << "on_attribute_name_state" << std::endl;
      const Char* attr_name_start = s;
 
      SCANWHILE(is_chartype(*s, parser::ct_symbol));
@@ -541,6 +585,7 @@ Document parser::parse(const String& str_html) {
   };
 
   auto on_self_closing_start_tag_state = [&]() {
+     if (debug) std::cerr << "on_self_closing_start_tag_state" << std::endl;
      ++s;
 
      if (*s != '>') {
@@ -552,8 +597,9 @@ Document parser::parse(const String& str_html) {
      };
 
   auto on_tag_open_state = [&]() {
+     //if (debug) std::cerr << "on_tag_open_state" << std::endl;
      ++s;
-
+     //if (debug) std::cerr << __FUNCTION__ << ": '" << *s << "'" << std::endl;
      // Check if the current character is a tag start symbol.
      if (is_chartype(*s, parser::ct_start_symbol)) {
         const Char* tag_name_start = s;
@@ -631,6 +677,7 @@ Document parser::parse(const String& str_html) {
 
   // Parse while the current character is not '\0'.
   while(*s != '\0') {
+     //if (debug) std::cerr << __FUNCTION__ << ":" << __LINE__ << " '" << *s << "'" << std::endl;
      // Check if the current character is the start tag character
      if (*s == '<')
         on_tag_open_state();
