@@ -117,7 +117,7 @@ pkgconfigdir     = /usr/lib/pkgconfig
 
 SOURCES  := $(sort $(wildcard *.cpp))
 OBJS      = $(SOURCES:.cpp=.o)
-LIBS      =
+LIBS      = -lrepfunc
 INCLUDES  = -I$(srcdir) -I$(shell pwd)/include
 LDFLAGS  += -shared -pthread
 DLL       = $(LIBRARY:.so=.dll)

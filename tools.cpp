@@ -4,22 +4,8 @@
 #include <fstream> // std::ifstream
 #include <iostream>
 #include <algorithm> // std::transform
+#include <repfunc.h>
 
-std::stringstream ReadFileToStream(std::string aFileName) {
-  std::stringstream ss;
-  std::ifstream is(aFileName.c_str());
-  if (is) {
-     ss << is.rdbuf();
-     is.close();
-     }
-  return ss; 
-}
-
-std::string UpperCase(std::string s) {
-  std::string r(s);
-  std::transform(r.begin(), r.end(), r.begin(), ::tolower);
-  return r;
-}
 
 namespace HTML {
 
@@ -33,13 +19,6 @@ Document ParseFile(std::string FileName) {
 
 
 Node GetBody(Document doc) {
-/*  auto tags = doc->get_elements_by_tag_name("BODY");
-  if (tags.size() != 1) {
-     std::cerr << "Error: could not find html body: size == " << tags.size() << std::endl;
-     return nullptr;
-     }
-  return tags[0];
-*/
   Node html = GetNode(doc, "HTML");
   if (html)
      return GetNode(html, "BODY");

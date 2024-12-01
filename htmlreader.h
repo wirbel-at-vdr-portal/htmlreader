@@ -120,9 +120,20 @@ public:
   int number() const { return Number; }
 
   /**
+   * @returns node sub number, which assigned as the node is created.
+   */
+  int subnumber() const { return SubNumber; }
+
+
+  /**
    * Sets node number. only to be called while creating this one
    */
   void number(int n) { Number = n; }
+
+  /**
+   * Sets node sub number. only to be called while creating this one
+   */
+  void subnumber(int n) { SubNumber = n; }
 
   /**
    * @return text inside node.
@@ -439,6 +450,7 @@ private:
   String value_;
   node_type type_;
   int Number;
+  int SubNumber;
 
   std::list<Node> children_;
   std::list<Attribute> attributes_;

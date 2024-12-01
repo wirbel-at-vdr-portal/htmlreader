@@ -22,7 +22,7 @@ inline bool allow_insert_child(node::node_type parent, node::node_type child) {
 }
 
 
-node::node(node_type type) : type_(type) { }
+node::node(node_type type) : type_(type), Number(0), SubNumber(0) { }
 
 
 Node node::create(node_type type) {
