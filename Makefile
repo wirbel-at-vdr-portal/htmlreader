@@ -184,7 +184,7 @@ install: $(LIBRARY_PATCH)
 	$(LN_SFR) $(DESTDIR)$(libdir)/$(LIBRARY_PATCH) $(DESTDIR)$(libdir)/$(LIBRARY_MINOR)
 	$(LN_SFR) $(DESTDIR)$(libdir)/$(LIBRARY_MINOR) $(DESTDIR)$(libdir)/$(LIBRARY_MAJOR)
 	$(LN_SFR) $(DESTDIR)$(libdir)/$(LIBRARY_MAJOR) $(DESTDIR)$(libdir)/$(LIBRARY)
-	$(INSTALL_DATA) LICENSE README.md doc/LICENSE.povilasb.cpp-html doc/README.rst.povilasb.cpp-html $(DESTDIR)$(docdir)
+	$(INSTALL_DATA) COPYING README $(DESTDIR)$(docdir)
 	$(INSTALL_DATA) htmlreader.pc $(DESTDIR)$(pkgconfigdir)
 #	$(INSTALL_DATA) doc/htmlreader.1 $(DESTDIR)$(man1dir)
 
