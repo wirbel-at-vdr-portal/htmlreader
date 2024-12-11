@@ -74,6 +74,7 @@ public:
   Node* GetNode(std::string aName);
   Node* GetNode(std::string aName, std::string AttrName, std::string AttrValue);
   std::vector<Node*> GetNodeList(std::string aName);
+  std::vector<Node*> GetNodeList(std::string aName, std::string AttrName, std::string AttrValue);
   Attr* GetAttribute(std::string aName);
   // debug functions
   int Number(void);
@@ -104,6 +105,7 @@ public:
   static const uint32_t DefaultParsing =
     Relaxed | SuppressErrors | SuppressWarnings | ForbidNetworkAccess | CompactSmallTextNodes;
 private:
+  void* priv;
   Node* root;
 public:
   Document(std::stringstream& ss, uint32_t Options = DefaultParsing);

@@ -30,12 +30,14 @@ Html::Document::Document(std::stringstream& ss, uint32_t Options) {
      root = new Node(xmlDocGetRootElement(XmlDocPtr));
   else
      root = nullptr;
+  priv = XmlDocPtr;
 }
 
 Html::Document::~Document() {
+  auto XmlDocPtr = (xmlDoc*) priv;
   if (XmlDocPtr) {
      // free our own memory
-     delete xRoot;
+     delete root;
      // free memory for XML document (DOM representation)
      xmlFreeDoc(XmlDocPtr);
      }

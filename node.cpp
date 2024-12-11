@@ -117,12 +117,12 @@ Html::Node* Html::Node::GetNode(std::string aName) {
 Html::Node* Html::Node::GetNode(std::string aName, std::string AttrName, std::string AttrValue) {
   aName = LowerCase(aName);
   AttrName = LowerCase(AttrName);
-  AttrValue = Lowercase(AttrValue);
+  AttrValue = LowerCase(AttrValue);
   for(auto node:childs) {
      if (LowerCase(node->Name()) != aName) {
         continue;
         }
-     for(auto attr:attribs) {
+     for(auto attr:node->attribs) {
         if (LowerCase(attr->Name()) == AttrName and LowerCase(attr->Value()) == AttrValue)
            return node;
         }
@@ -131,9 +131,9 @@ Html::Node* Html::Node::GetNode(std::string aName, std::string AttrName, std::st
 }
 
 std::vector<Html::Node*> Html::Node::GetNodeList(std::string aName) {
-  std::vector<Html::Node> result;
+  std::vector<Html::Node*> result;
   aName = LowerCase(aName);
-  for(auto node:Parent->child_nodes()) {
+  for(auto node:childs) {
      if (LowerCase(node->Name()) != aName) {
         continue;
         }
@@ -147,11 +147,11 @@ std::vector<Html::Node*> Html::Node::GetNodeList(std::string aName, std::string 
   aName = LowerCase(aName);
   AttrName = LowerCase(AttrName);
   AttrValue = LowerCase(AttrValue);
-  for(auto node:Parent->childs) {
+  for(auto node:childs) {
      if (LowerCase(node->Name()) != aName) {
         continue;
         }
-     for(auto attr:attribs) {
+     for(auto attr:node->attribs) {
         if (LowerCase(attr->Name()) == AttrName and LowerCase(attr->Value()) == AttrValue) {
            result.push_back(node);
            break;
