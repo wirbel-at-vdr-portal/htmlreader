@@ -1,0 +1,62 @@
+This is htmlreader - a small c++ lib on top of libxml2 for parsing html files.
+
+
+Written by:                  Winfried Koehler <nvdec A.T. quantentunnel D.O.T. de >
+Project's homepage:          https://github.com/wirbel-at-vdr-portal/htmlreader
+Latest version available at: https://github.com/wirbel-at-vdr-portal/htmlreader
+License:                     GPL v2
+
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as
+published by the Free Software Foundation.
+See the file COPYING for more information.
+
+
+
+--------------------------------------------------------------------------------
+0. Requirements
+--------------------------------------------------------------------------------
+
+- libxml2 (https://download.gnome.org/sources/libxml2)
+- librepfunc >= 1.1.0 (https://github.com/wirbel-at-vdr-portal/librepfunc)
+
+
+
+--------------------------------------------------------------------------------
+1. Compiling
+--------------------------------------------------------------------------------
+Just run in top folder
+
+make
+
+Then, with root permissions:
+
+make install
+
+--------------------------------------------------------------------------------
+2. Usage
+--------------------------------------------------------------------------------
+
+  #include <iostream>
+  #include <sstream>
+  #include <htmlreader.h>
+
+  std::stringstream ss = ReadFileToStream("example.html");
+  auto document = new Html::Document(ss);
+  auto html = document->Root();
+  for(auto node:html) {
+     std::cout << "Node: " << node->Name() << std::endl;
+     std::cout << "  Attributes: ";
+     for(auto attr:node->Attributes()) {
+        std::cout << attr->Name() << "=" << attr->Value() << ",";
+        }
+     std::cout << std::endl;
+     std::cout << "-------------" << std::endl;
+     }
+  delete document;
+
+
+
+have phun,
+Winfried
