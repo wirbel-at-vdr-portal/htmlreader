@@ -19,8 +19,18 @@ int main() {
   auto ss = ReadFileToStream(html);
   auto document = new Html::Document(ss);
   auto root = document->Root();
+  auto body = root->GetNode("body");
+  auto book = body->GetNode("div", "class", "book");
+  auto toc  = book->GetNode("div", "class", "toc");
+  auto ul = toc->GetNode("ul");
 
-  std::cout << "root name = '" << root->Name() << "'" << std::endl;
+  auto parts = ul->GetNodeList("li", "class", "part");
+  for(auto part:parts) {
+     auto h3 = part->GetNode("h3");
+     auto caption = h3->GetNode("text")->Content();
+     std::cout << caption << std::endl;
+     }
+  //std::cout << "toc name = '" << toc->Name() << "'" << std::endl;
 
 
   //Sleep(5);
@@ -29,14 +39,8 @@ int main() {
 
 
 
+//  
 
-
-
-  //  HTML::parser Parser;  Parser.Debug();
-  //auto document = Parser.parse(ss.str());
-//  auto body = HTML::GetBody(document);
-//  auto book = HTML::GetNode(body, "div", "class", "book");
-//  auto toc  = HTML::GetNode(book, "div", "class", "toc");
 //
 //  for(auto li:GetNodeList(toc, "li", "class", "part")) {
 //     auto h3 = HTML::GetNode(body, "h3");
