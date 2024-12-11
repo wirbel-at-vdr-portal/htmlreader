@@ -1,5 +1,5 @@
 #/*******************************************************************************
-# * htmlreader - a C++ lib for parsing HTML documents, based on pugixml
+# * htmlreader - a C++ lib for parsing HTML documents, based on libxml2
 # ******************************************************************************/
 
 
@@ -7,7 +7,7 @@
 #   - MAJOR++  -> API-incompatible
 #   - MINOR++  -> API-compatible, but new functionality
 #   - PATCH++  -> API untouched changes
-MAJOR = 1
+MAJOR = 2
 MINOR = 0
 PATCH = 0
 
@@ -118,7 +118,9 @@ pkgconfigdir     = /usr/lib/pkgconfig
 SOURCES  := $(sort $(wildcard *.cpp))
 OBJS      = $(SOURCES:.cpp=.o)
 LIBS      = -lrepfunc
+LIBS     += $(shell $(PKG_CONFIG) --libs libxml-2.0)
 INCLUDES  = -I$(srcdir) -I$(shell pwd)/include
+INCLUDES += $(shell $(PKG_CONFIG) --cflags libxml-2.0)
 LDFLAGS  += -shared -pthread
 DLL       = $(LIBRARY:.so=.dll)
 
@@ -129,7 +131,7 @@ includedir=$${prefix}/include
 libdir=$${exec_prefix}/lib
 
 Name: htmlreader
-Description: a C++ lib for parsing HTML documents, based on pugixml.
+Description: a C++ lib for parsing HTML documents, based on libxml2.
 URL: $(URL)
 Version: $(VERSION)
 Libs: -L$${libdir} -l'htmlreader'
