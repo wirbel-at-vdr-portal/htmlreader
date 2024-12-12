@@ -113,6 +113,10 @@ man3dir          = $(mandir)/man3
 man4dir          = $(mandir)/man4
 man5dir          = $(mandir)/man5
 pkgconfigdir     = /usr/lib/pkgconfig
+dllbindir        = /mingw64/bin
+dllincdir        = /mingw64/include
+dllpkgconfigdir  = /mingw64/share/pkgconfig
+
 
 SOURCES  := $(sort $(wildcard *.cpp))
 OBJS      = $(SOURCES:.cpp=.o)
@@ -122,6 +126,8 @@ INCLUDES  = -I$(srcdir) -I$(shell pwd)/include
 INCLUDES += $(shell $(PKG_CONFIG) --cflags libxml-2.0)
 LDFLAGS  += -shared -pthread
 DLL       = $(LIBRARY:.so=.dll)
+
+
 
 define PKG_DATA
 prefix=$(prefix)
@@ -136,6 +142,24 @@ Version: $(VERSION)
 Libs: -L$${libdir} -l'htmlreader'
 Cflags: -I$${includedir}
 endef
+
+
+
+define PKG_DATA_DLL
+prefix=$(prefix)
+exec_prefix=$${prefix}
+includedir=$${prefix}/mingw64/include
+libdir=$${exec_prefix}/mingw64/bin
+
+Name: htmlreader
+Description: a C++ lib for parsing HTML documents, based on libxml2.
+URL: $(URL)
+Version: $(VERSION)
+Libs: -L$${libdir} -l:librepfunc.dll -l:libhtmlreader.dll
+Cflags: -I$${includedir}
+endef
+
+
 
 %.o: %.cpp
 ifeq ($(Q),@)
@@ -186,6 +210,13 @@ install: $(LIBRARY_PATCH)
 	$(INSTALL_DATA) COPYING README $(DESTDIR)$(docdir)
 	$(INSTALL_DATA) htmlreader.pc $(DESTDIR)$(pkgconfigdir)
 #	$(INSTALL_DATA) doc/htmlreader.1 $(DESTDIR)$(man1dir)
+
+install-dll: $(DLL)
+	$(file >htmlreader.pc,$(PKG_DATA_DLL))
+	$(INSTALL_PROGRAM) $(DLL) $(DESTDIR)$(dllbindir)
+	$(INSTALL_DATA) htmlreader.h $(DESTDIR)$(dllincdir)
+	$(INSTALL_DATA) htmlreader.pc $(DESTDIR)$(dllpkgconfigdir)	
+
 
 uninstall:
 	$(RM) -f $(DESTDIR)$(libdir)/$(LIBRARY_PATCH)
@@ -239,3 +270,11 @@ printvars:
 	@echo "LDFLAGS            = $(LDFLAGS)"
 	@echo "AR                 = $(AR)"
 	@echo "RANLIB             = $(RANLIB)"
+	@echo "libdir             = $(libdir)"
+	@echo "includedir         = $(includedir)"
+	@echo "docdir             = $(docdir)"
+	@echo "pkgconfigdir       = $(pkgconfigdir)"
+	@echo "man1dir            = $(man1dir)"
+	@echo "dllbindir          = $(dllbindir)"
+	@echo "dllincdir          = $(dllincdir)"
+	@echo "dllpkgconfigdir    = $(dllpkgconfigdir)"
