@@ -8,3 +8,6 @@
 *.pc
 testprog
 html
+*.exe
+*.sh
+*.html
