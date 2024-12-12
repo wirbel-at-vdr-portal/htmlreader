@@ -56,7 +56,7 @@ class Node {
 friend class Document;
 private:
   std::string name;
-  std::string content;
+  std::string rawcontent;
   int nodetype;
   int number;
   int line;
@@ -68,6 +68,7 @@ public:
   ~Node();
   std::string Name(void);
   std::string Content(void);
+  std::string RawContent(void);
   std::vector<Node*> Children(void);
   std::vector<Attr*> Attributes(void);
   // useful tools

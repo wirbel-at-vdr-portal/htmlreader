@@ -23,11 +23,7 @@ Html::Node::Node(void* p) {
 
   s = ptr->content;
   if (s and *s) {
-     std::string s1 = (const char*) s;
-     ReplaceAll(s1, "\n", " ");
-     while(s1.find("  ") != std::string::npos)
-        ReplaceAll(s1, "  ", " ");
-     content = Trim(s1);
+     rawcontent = (const char*) s;
      }
 
   int types[] = {
@@ -85,7 +81,15 @@ std::string Html::Node::Name(void) {
 }
 
 std::string Html::Node::Content(void) {
-  return content;
+  std::string content(rawcontent);
+  ReplaceAll(content, "\n", " ");
+  while(content.find("  ") != std::string::npos)
+     ReplaceAll(content, "  ", " ");
+  return Trim(content);
+}
+
+std::string Html::Node::RawContent(void) {
+  return rawcontent;
 }
 
 std::vector<Html::Node*> Html::Node::Children(void) {
