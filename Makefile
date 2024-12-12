@@ -25,7 +25,6 @@ URL = https://github.com/wirbel-at-vdr-portal/htmlreader
 
 
 
-
 #/******************************************************************************
 # * if you prefer verbose non-coloured build messages, remove the '@' here:
 # *****************************************************************************/
@@ -166,7 +165,7 @@ $(DLL): $(OBJS)
 ifeq ($(Q),@)
 	@echo -e "${GN} LINK $(DLL)${RST}"
 endif
-	$(Q)$(CXX) $(CXXFLAGS) $(LDFLAGS) -Wl,--subsystem,windows,--out-implib,$(DLL).a $(OBJS) $(LIBS) -o $(DLL) 
+	$(Q)$(CXX) $(CXXFLAGS) $(LDFLAGS) -Wl,--subsystem,windows,--out-implib,$(DLL).a $(OBJS) -L. -l:librepfunc.dll $(shell $(PKG_CONFIG) --libs libxml-2.0) -o $(DLL) 
 
 .PHONY: clean Version.h doc
 clean:
